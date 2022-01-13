@@ -7,8 +7,8 @@ type Props = {
   children: React.ReactNode;
 };
 
-const AppText: React.FC<Props> = props => (
+const Index: React.FC<Props> = props => (
   <Text style={[props.style, styles.defaultFont]}>{props.children}</Text>
 );
 
-export default AppText;
+export default Index;
