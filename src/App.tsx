@@ -7,11 +7,19 @@ import DailyReview from '@components/DailyReview/DailyReview';
 const App = () => {
   const reminders: any[] = [
     {
+      id: 1,
       title: 'Oxycodone',
       at: '10:00 AM',
       when: 'Before eating',
     },
     {
+      id: 2,
+      title: 'Naxolone',
+      at: '04:00 AM',
+      when: 'After eating',
+    },
+    {
+      id: 3,
       title: 'Naxolone',
       at: '04:00 AM',
       when: 'After eating',

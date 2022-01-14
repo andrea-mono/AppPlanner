@@ -2,6 +2,8 @@ import React from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
 import Reminder from '@components/Reminder/Reminder';
 import { ReminderInterface } from '@interfaces/reminder';
+import { styles } from './style';
+import AppText from '@components/AppText';
 
 type Props = {
   reminders: ReminderInterface[];
@@ -13,12 +15,17 @@ type RenderItemProps = {
 
 const DailyReview: React.FC<Props> = props => {
   const renderItem = ({ item }: RenderItemProps) => (
-    <Reminder title={item.title} at={item.at} when={item.when} />
+    <Reminder id={item.id} title={item.title} at={item.at} when={item.when} />
   );
 
   return (
-    <SafeAreaView>
-      <FlatList data={props.reminders} renderItem={renderItem} />
+    <SafeAreaView style={styles.container}>
+      <AppText style={styles.title}>Daily Review</AppText>
+      <FlatList
+        data={props.reminders}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
     </SafeAreaView>
   );
 };
