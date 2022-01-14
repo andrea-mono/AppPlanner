@@ -78,6 +78,9 @@
       "@assets/*": [
         "src/assets/*"
       ],
+      "@screens/*": [
+        "src/screens/*"
+      ],
       "@theme/*": [
         "src/theme/*"
       ],
