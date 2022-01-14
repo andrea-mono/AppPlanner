@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 import SearchBar from '@components/SearchBar';
 import UserPlan from '@components/UserPlan';
-import DailyReview from '@components/DailyReview/DailyReview';
+import DailyReview from '@components/DailyReview';
 import { styles } from './style';
 
 const Home = () => {

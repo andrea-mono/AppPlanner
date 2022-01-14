@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlatList, SafeAreaView } from 'react-native';
-import Reminder from '@components/Reminder/Reminder';
+import Reminder from '@components/Reminder';
 import { ReminderInterface } from '@interfaces/reminder';
 import { styles } from './style';
 import AppText from '@components/AppText';
