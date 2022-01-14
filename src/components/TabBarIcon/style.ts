@@ -3,8 +3,13 @@ import { colors } from '@theme/colors';
 
 export const styles = StyleSheet.create({
   tabBarIcon: {
-    padding: 10,
+    padding: 12,
     borderRadius: 15,
+  },
+  secondary: {
+    backgroundColor: colors.green,
+    padding: 20,
+    marginVertical: 10,
   },
   focused: {
     backgroundColor: colors.gray['10'],

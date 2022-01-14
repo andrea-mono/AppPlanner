@@ -68,7 +68,17 @@ const Navigation = () => {
             ),
           }}
         />
-        <Tab.Screen name="AddPlan" component={AddPlan} />
+        <Tab.Screen
+          name="AddPlan"
+          component={AddPlan}
+          options={{
+            tabBarButton: ({ onPress }) => (
+              <TabBarIcon type="secondary" onPress={onPress}>
+                <PlusIcon width={18} height={18} fill={colors.white} />
+              </TabBarIcon>
+            ),
+          }}
+        />
         <Tab.Screen
           name="Notifications"
           component={Notifications}
