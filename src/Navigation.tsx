@@ -7,9 +7,14 @@ import Calendar from '@screens/Calendar';
 import AddPlan from '@screens/AddPlan';
 import Notifications from '@screens/Notifications';
 import Profile from '@screens/Profile';
-import Plus from '@assets/icons/plus.svg';
+import AppIcon from '@assets/icons/app.svg';
+import CalendarIcon from '@assets/icons/calendar.svg';
+import PlusIcon from '@assets/icons/plus.svg';
+import MessageIcon from '@assets/icons/message.svg';
+import AvatarIcon from '@assets/icons/avatar.svg';
 import { colors } from '@theme/colors';
 import CustomTabBar from '@components/CustomTabBar';
+import TabBarIcon from '@components/TabBarIcon/TabBarIcon';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,11 +38,67 @@ const Navigation = () => {
             elevation: 0,
           },
         }}>
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Calendar" component={Calendar} />
+        <Tab.Screen
+          name="Home"
+          component={Home}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <TabBarIcon focused={focused}>
+                <AppIcon
+                  width={18}
+                  height={18}
+                  fill={focused ? colors.green : colors.gray['100']}
+                />
+              </TabBarIcon>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Calendar"
+          component={Calendar}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <TabBarIcon focused={focused}>
+                <CalendarIcon
+                  width={18}
+                  height={18}
+                  fill={focused ? colors.green : colors.gray['100']}
+                />
+              </TabBarIcon>
+            ),
+          }}
+        />
         <Tab.Screen name="AddPlan" component={AddPlan} />
-        <Tab.Screen name="Notifications" component={Notifications} />
-        <Tab.Screen name="Profile" component={Profile} />
+        <Tab.Screen
+          name="Notifications"
+          component={Notifications}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <TabBarIcon focused={focused}>
+                <MessageIcon
+                  width={18}
+                  height={18}
+                  fill={focused ? colors.green : colors.gray['100']}
+                />
+              </TabBarIcon>
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="Profile"
+          component={Profile}
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <TabBarIcon focused={focused}>
+                <AvatarIcon
+                  width={18}
+                  height={18}
+                  fill={focused ? colors.green : colors.gray['100']}
+                />
+              </TabBarIcon>
+            ),
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );

@@ -5,7 +5,7 @@ import { View } from 'react-native';
 const Profile = () => {
   return (
     <View>
-      <AppText>Add Plan</AppText>
+      <AppText>Profile</AppText>
     </View>
   );
 };
