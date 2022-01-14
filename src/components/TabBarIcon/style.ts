@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   secondary: {
     backgroundColor: colors.green,
     padding: 20,
-    marginVertical: 10,
+    marginVertical: 15,
   },
   focused: {
     backgroundColor: colors.gray['10'],
