@@ -1,20 +1,15 @@
 import React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { View } from 'react-native';
 import HomeScreen from '@screens/Home';
 import CalendarScreen from '@screens/Calendar';
 import AddPlanScreen from '@screens/AddPlan';
 import NotificationsScreen from '@screens/Notifications';
 import ProfileScreen from '@screens/Profile';
-import AppIcon from '@assets/icons/app.svg';
-import CalendarIcon from '@assets/icons/calendar.svg';
-import PlusIcon from '@assets/icons/plus.svg';
-import MessageIcon from '@assets/icons/message.svg';
-import AvatarIcon from '@assets/icons/avatar.svg';
 import { colors } from '@theme/colors';
 import CustomTabBar from '@components/CustomTabBar';
 import TabBarIcon from '@components/TabBarIcon/TabBarIcon';
-import { View } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,13 +37,7 @@ const Navigation = () => {
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused}>
-              <AppIcon
-                width={18}
-                height={18}
-                fill={focused ? colors.green : colors.gray['100']}
-              />
-            </TabBarIcon>
+            <TabBarIcon icon="app" size={18} focused={focused} />
           ),
         }}
       />
@@ -57,13 +46,7 @@ const Navigation = () => {
         component={CalendarScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused}>
-              <CalendarIcon
-                width={18}
-                height={18}
-                fill={focused ? colors.green : colors.gray['100']}
-              />
-            </TabBarIcon>
+            <TabBarIcon icon="calendar" size={18} focused={focused} />
           ),
         }}
       />
@@ -74,9 +57,12 @@ const Navigation = () => {
           tabBarStyle: { display: 'none' },
           tabBarButton: ({ onPress }) => (
             <View style={{ paddingHorizontal: 10 }}>
-              <TabBarIcon type="secondary" onPress={onPress}>
-                <PlusIcon width={18} height={18} fill={colors.white} />
-              </TabBarIcon>
+              <TabBarIcon
+                icon="plus"
+                size={18}
+                type="secondary"
+                onPress={onPress}
+              />
             </View>
           ),
         }}
@@ -86,13 +72,7 @@ const Navigation = () => {
         component={NotificationsScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused}>
-              <MessageIcon
-                width={18}
-                height={18}
-                fill={focused ? colors.green : colors.gray['100']}
-              />
-            </TabBarIcon>
+            <TabBarIcon icon="message" size={18} focused={focused} />
           ),
         }}
       />
@@ -101,13 +81,7 @@ const Navigation = () => {
         component={ProfileScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused}>
-              <AvatarIcon
-                width={18}
-                height={18}
-                fill={focused ? colors.green : colors.gray['100']}
-              />
-            </TabBarIcon>
+            <TabBarIcon icon="avatar" size={18} focused={focused} />
           ),
         }}
       />
