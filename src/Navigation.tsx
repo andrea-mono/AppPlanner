@@ -1,6 +1,10 @@
 import React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {
+  getFocusedRouteNameFromRoute,
+  RouteProp,
+} from '@react-navigation/native';
 import Home from '@screens/Home';
 import Calendar from '@screens/Calendar';
 import AddPlan from '@screens/AddPlan';
@@ -71,6 +75,7 @@ const Navigation = () => {
         name="AddPlan"
         component={AddPlan}
         options={{
+          tabBarStyle: { display: 'none' },
           tabBarButton: ({ onPress }) => (
             <View style={{ paddingHorizontal: 10 }}>
               <TabBarIcon type="secondary" onPress={onPress}>
