@@ -1,15 +1,11 @@
 import React from 'react';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {
-  getFocusedRouteNameFromRoute,
-  RouteProp,
-} from '@react-navigation/native';
-import Home from '@screens/Home';
-import Calendar from '@screens/Calendar';
-import AddPlan from '@screens/AddPlan';
-import Notifications from '@screens/Notifications';
-import Profile from '@screens/Profile';
+import HomeScreen from '@screens/Home';
+import CalendarScreen from '@screens/Calendar';
+import AddPlanScreen from '@screens/AddPlan';
+import NotificationsScreen from '@screens/Notifications';
+import ProfileScreen from '@screens/Profile';
 import AppIcon from '@assets/icons/app.svg';
 import CalendarIcon from '@assets/icons/calendar.svg';
 import PlusIcon from '@assets/icons/plus.svg';
@@ -35,15 +31,15 @@ const Navigation = () => {
         tabBarHideOnKeyboard: true,
         tabBarStyle: {
           backgroundColor: 'transparent',
-          height: 130,
-          paddingTop: 40,
+          height: 110,
+          paddingTop: 20,
           borderTopWidth: 0,
           elevation: 0,
         },
       }}>
       <Tab.Screen
         name="Home"
-        component={Home}
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused}>
@@ -58,7 +54,7 @@ const Navigation = () => {
       />
       <Tab.Screen
         name="Calendar"
-        component={Calendar}
+        component={CalendarScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused}>
@@ -73,7 +69,7 @@ const Navigation = () => {
       />
       <Tab.Screen
         name="AddPlan"
-        component={AddPlan}
+        component={AddPlanScreen}
         options={{
           tabBarStyle: { display: 'none' },
           tabBarButton: ({ onPress }) => (
@@ -87,7 +83,7 @@ const Navigation = () => {
       />
       <Tab.Screen
         name="Notifications"
-        component={Notifications}
+        component={NotificationsScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused}>
@@ -102,7 +98,7 @@ const Navigation = () => {
       />
       <Tab.Screen
         name="Profile"
-        component={Profile}
+        component={ProfileScreen}
         options={{
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused}>
