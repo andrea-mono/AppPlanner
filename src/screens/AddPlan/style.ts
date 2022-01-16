@@ -6,7 +6,6 @@ export const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 30,
     paddingTop: 30,
-    paddingBottom: 80,
   },
   title: {
     fontSize: 30,
@@ -15,7 +14,7 @@ export const styles = StyleSheet.create({
   },
   form: {
     paddingTop: 25,
-    paddingBottom: 40,
+    paddingBottom: 60,
   },
   field: {
     marginBottom: 30,
@@ -28,6 +27,9 @@ export const styles = StyleSheet.create({
   },
   flexRow: {
     flexDirection: 'row',
+  },
+  flex: {
+    flex: 1,
   },
   divider: {
     width: 20,
