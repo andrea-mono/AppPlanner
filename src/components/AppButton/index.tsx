@@ -9,18 +9,19 @@ interface Props extends ButtonProps {
 
 type ButtonProps = {
   title: string;
+  onPress: () => void;
 };
 
 const PrimaryButton: React.FC<ButtonProps> = props => (
-  <TouchableOpacity>
+  <TouchableOpacity onPress={props.onPress}>
     <View style={styles.primary}>
-      <AppText>{props.title}</AppText>
+      <AppText style={styles.fontPrimary}>{props.title}</AppText>
     </View>
   </TouchableOpacity>
 );
 
 const SecondaryButton: React.FC<ButtonProps> = props => (
-  <TouchableOpacity>
+  <TouchableOpacity onPress={props.onPress}>
     <AppText style={styles.secondary}>{props.title}</AppText>
   </TouchableOpacity>
 );
@@ -28,8 +29,12 @@ const SecondaryButton: React.FC<ButtonProps> = props => (
 const AppButton: React.FC<Props> = props => {
   return (
     <>
-      {props.type === 'primary' && <PrimaryButton title={props.title} />}
-      {props.type === 'secondary' && <SecondaryButton title={props.title} />}
+      {props.type === 'primary' && (
+        <PrimaryButton title={props.title} onPress={props.onPress} />
+      )}
+      {props.type === 'secondary' && (
+        <SecondaryButton title={props.title} onPress={props.onPress} />
+      )}
     </>
   );
 };

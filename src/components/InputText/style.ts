@@ -6,8 +6,15 @@ export const styles = StyleSheet.create({
     height: 55,
     flexDirection: 'row',
   },
+  label: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: colors.black,
+    marginBottom: 12,
+  },
   icon: {
     alignSelf: 'center',
+    paddingLeft: 5,
   },
   input: {
     flex: 1,
