@@ -15,7 +15,12 @@ type RenderItemProps = {
 
 const DailyReview: React.FC<Props> = props => {
   const renderItem = ({ item }: RenderItemProps) => (
-    <Reminder id={item.id} title={item.title} at={item.at} when={item.when} />
+    <Reminder
+      id={item.id}
+      pillsName={item.pillsName}
+      notificationTime={item.notificationTime}
+      when={item.when}
+    />
   );
 
   return (

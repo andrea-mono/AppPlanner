@@ -1,6 +1,6 @@
 export interface ReminderInterface {
   id: string;
-  title: string;
-  at: string;
+  pillsName: string;
   when: string;
+  notificationTime: Date;
 }

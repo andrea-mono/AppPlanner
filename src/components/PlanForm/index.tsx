@@ -1,13 +1,16 @@
 import React, { useReducer, useState } from 'react';
 import { styles } from './style';
-import { Alert, View } from 'react-native';
+import { Alert, Omit, View } from 'react-native';
 import AppText from '@components/AppText';
 import InputText from '@components/InputText';
 import IconButton from '@components/IconButton';
 import AppButton from '@components/AppButton';
 import TimePicker from '@components/TimePicker';
+import { FormAction, FormState } from '@interfaces/plan-form';
 
-const initialState: formState = {
+type FormInitialState = Omit<FormState, 'id'>;
+
+const initialState: FormInitialState = {
   pillsName: '',
   quantity: '1',
   howLong: '30',
@@ -15,25 +18,7 @@ const initialState: formState = {
   notificationTime: new Date(),
 };
 
-type formState = {
-  pillsName: string;
-  quantity: string;
-  howLong: string;
-  when: string;
-  notificationTime: Date;
-};
-
-type formAction = {
-  type:
-    | 'SET_PILLS_NAME'
-    | 'SET_PILLS_QTY'
-    | 'SET_PILLS_HOW_LONG'
-    | 'SET_PILLS_TIME'
-    | 'SET_PILLS_NOTIFICATION_TIME';
-  payload: any;
-};
-
-const formReducer = (state: formState, action: formAction) => {
+const formReducer = (state: FormInitialState, action: FormAction) => {
   switch (action.type) {
     case 'SET_PILLS_NAME':
       return {
@@ -61,19 +46,24 @@ const formReducer = (state: formState, action: formAction) => {
         notificationTime: action.payload,
       };
     }
-    default:
+    case 'RESET': {
       return initialState;
+    }
   }
 };
 
-const PlanForm = () => {
+type Props = {
+  onSubmit: (form: FormInitialState) => void;
+};
+
+const PlanForm: React.FC<Props> = props => {
   const [form, dispatchForm] = useReducer(formReducer, initialState);
   const [showTimePicker, setShowTimePicker] = useState(false);
 
   const validateForm = () => {
     let isValid = true;
     Object.keys(form).forEach(key => {
-      if (!form[key as keyof formState]) {
+      if (!form[key as keyof FormInitialState]) {
         isValid = false;
       }
     });
@@ -93,7 +83,8 @@ const PlanForm = () => {
       Alert.alert('Error', 'Complete all required fields.', [{ text: 'OK' }]);
       return;
     }
-    console.log(form);
+    props.onSubmit(form);
+    dispatchForm({ type: 'RESET' });
   };
 
   return (
@@ -190,4 +181,5 @@ const PlanForm = () => {
     </View>
   );
 };
+
 export default PlanForm;

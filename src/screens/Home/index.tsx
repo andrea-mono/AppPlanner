@@ -4,34 +4,16 @@ import SearchBar from '@components/SearchBar';
 import UserPlan from '@components/UserPlan';
 import DailyReview from '@components/DailyReview';
 import { styles } from './style';
+import { useStore } from '@app/store';
 
 const Home = () => {
-  const reminders: any[] = [
-    {
-      id: 1,
-      title: 'Oxycodone',
-      at: '10:00 AM',
-      when: 'Before eating',
-    },
-    {
-      id: 2,
-      title: 'Naxolone',
-      at: '04:00 AM',
-      when: 'After eating',
-    },
-    {
-      id: 3,
-      title: 'Naxolone',
-      at: '04:00 AM',
-      when: 'After eating',
-    },
-  ];
+  const state = useStore()[0];
 
   return (
     <SafeAreaView style={styles.container}>
       <SearchBar />
       <UserPlan name="Andrea" />
-      <DailyReview reminders={reminders} />
+      <DailyReview reminders={state.plans} />
     </SafeAreaView>
   );
 };
