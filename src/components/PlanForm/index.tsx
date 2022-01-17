@@ -80,16 +80,11 @@ const PlanForm = () => {
     return isValid;
   };
 
-  const setNotificationTimeHandler = ({ nativeEvent, type }: any) => {
+  const setNotificationTimeHandler = (date: Date) => {
     setShowTimePicker(false);
-
-    if (type !== 'set') {
-      return;
-    }
-
     dispatchForm({
       type: 'SET_PILLS_NOTIFICATION_TIME',
-      payload: nativeEvent.timestamp,
+      payload: date,
     });
   };
 
@@ -186,14 +181,13 @@ const PlanForm = () => {
         <TimePicker
           show={showTimePicker}
           value={form.notificationTime}
-          onChange={event => setNotificationTimeHandler(event)}
+          onChange={date => setNotificationTimeHandler(date)}
+          onCancel={() => setShowTimePicker(false)}
           onFocus={() => setShowTimePicker(true)}
-          onTouchCancel={() => setShowTimePicker(false)}
         />
       </View>
       <AppButton type="primary" title="Done" onPress={submitHandler} />
     </View>
   );
 };
-
 export default PlanForm;

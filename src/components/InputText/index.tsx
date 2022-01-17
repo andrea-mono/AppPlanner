@@ -15,6 +15,7 @@ import { colors } from '@theme/colors';
 import Card from '@components/Card';
 
 type Props = {
+  ref?: HTMLInputElement | null;
   icon?: string;
   style?: StyleProp<ViewStyle>;
   value?: string;
@@ -35,18 +36,20 @@ const icons: iconsOptions = {
   bell: <BellIcon width={20} height={20} fill={colors.gray['100']} />,
 };
 
-const InputText: React.FC<Props> = props => {
+const InputText = React.forwardRef<TextInput, Props>((props, ref) => {
   const { style, ...rest } = props;
+
   return (
     <Card style={[styles.inputCard, style]}>
       {props.icon && <View style={styles.icon}>{icons[props.icon]}</View>}
       <TextInput
         {...rest}
+        ref={ref}
         style={styles.input}
         placeholderTextColor={colors.gray['100']}
       />
     </Card>
   );
-};
+});
 
 export default InputText;
