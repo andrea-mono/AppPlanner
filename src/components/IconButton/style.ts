@@ -13,4 +13,7 @@ export const styles = StyleSheet.create({
   fit: {
     alignSelf: 'flex-start',
   },
+  focused: {
+    backgroundColor: colors.green,
+  },
 });

@@ -15,30 +15,48 @@ interface Props extends ButtonProps {
 type ButtonProps = {
   icon: string;
   fit?: boolean;
+  focused?: boolean;
   onPress: () => void;
 };
 
-type Icon = {
-  [key: string]: JSX.Element;
-};
-
-const icons: Icon = {
-  back: <ArrowLeft width={24} height={24} fill={colors.gray['100']} />,
-  plus: <Plus width={10} height={10} fill={colors.black} />,
-  beforeEating: (
-    <BeforeEating width={60} height={60} fill={colors.gray['100']} />
-  ),
-  duringEating: (
-    <DuringEating width={60} height={60} fill={colors.gray['100']} />
-  ),
-  afterEating: <AfterEating width={60} height={60} fill={colors.gray['100']} />,
+const getIcon = (name: string, focused = false) => {
+  switch (name) {
+    case 'back':
+      return <ArrowLeft width={24} height={24} fill={colors.gray['100']} />;
+    case 'plus':
+      return <Plus width={10} height={10} fill={colors.black} />;
+    case 'beforeEating':
+      return (
+        <BeforeEating
+          width={60}
+          height={60}
+          fill={focused ? colors.white : colors.gray['100']}
+        />
+      );
+    case 'duringEating':
+      return (
+        <DuringEating
+          width={60}
+          height={60}
+          fill={focused ? colors.white : colors.gray['100']}
+        />
+      );
+    case 'afterEating':
+      return (
+        <AfterEating
+          width={60}
+          height={60}
+          fill={focused ? colors.white : colors.gray['100']}
+        />
+      );
+  }
 };
 
 const PrimaryButton: React.FC<ButtonProps> = props => {
   return (
     <TouchableOpacity onPress={props.onPress}>
       <View style={[styles.btn, styles.primary, props.fit ? styles.fit : {}]}>
-        {icons[props.icon]}
+        {getIcon(props.icon)}
       </View>
     </TouchableOpacity>
   );
@@ -46,8 +64,14 @@ const PrimaryButton: React.FC<ButtonProps> = props => {
 
 const SecondaryButton: React.FC<ButtonProps> = props => (
   <TouchableOpacity onPress={props.onPress}>
-    <View style={[styles.btn, styles.secondary, props.fit ? styles.fit : {}]}>
-      {icons[props.icon]}
+    <View
+      style={[
+        styles.btn,
+        styles.secondary,
+        props.fit ? styles.fit : {},
+        props.focused ? styles.focused : {},
+      ]}>
+      {getIcon(props.icon, props.focused)}
     </View>
   </TouchableOpacity>
 );
@@ -66,6 +90,7 @@ const IconButton: React.FC<Props> = props => {
         <SecondaryButton
           icon={props.icon}
           fit={props.fit}
+          focused={props.focused}
           onPress={props.onPress}
         />
       )}

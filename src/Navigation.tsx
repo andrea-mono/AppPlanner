@@ -9,7 +9,7 @@ import NotificationsScreen from '@screens/Notifications';
 import ProfileScreen from '@screens/Profile';
 import { colors } from '@theme/colors';
 import CustomTabBar from '@components/CustomTabBar';
-import TabBarIcon from '@components/TabBarIcon/TabBarIcon';
+import TabBarIcon from '@components/TabBarIcon';
 
 const Tab = createBottomTabNavigator();
 

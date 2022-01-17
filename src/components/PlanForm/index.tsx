@@ -1,30 +1,36 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useState } from 'react';
 import { styles } from './style';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import AppText from '@components/AppText';
 import InputText from '@components/InputText';
 import IconButton from '@components/IconButton';
 import AppButton from '@components/AppButton';
+import TimePicker from '@components/TimePicker';
 
 const initialState: formState = {
   pillsName: '',
   quantity: '1',
   howLong: '30',
+  when: '',
+  notificationTime: new Date(),
 };
 
 type formState = {
   pillsName: string;
   quantity: string;
   howLong: string;
+  when: string;
+  notificationTime: Date;
 };
 
 type formAction = {
   type:
     | 'SET_PILLS_NAME'
-    | 'SET_PILLS_TIME'
     | 'SET_PILLS_QTY'
-    | 'SET_PILLS_HOW_LONG';
-  payload: string;
+    | 'SET_PILLS_HOW_LONG'
+    | 'SET_PILLS_TIME'
+    | 'SET_PILLS_NOTIFICATION_TIME';
+  payload: any;
 };
 
 const formReducer = (state: formState, action: formAction) => {
@@ -44,6 +50,17 @@ const formReducer = (state: formState, action: formAction) => {
         ...state,
         howLong: action.payload,
       };
+    case 'SET_PILLS_TIME':
+      return {
+        ...state,
+        when: action.payload,
+      };
+    case 'SET_PILLS_NOTIFICATION_TIME': {
+      return {
+        ...state,
+        notificationTime: action.payload,
+      };
+    }
     default:
       return initialState;
   }
@@ -51,8 +68,36 @@ const formReducer = (state: formState, action: formAction) => {
 
 const PlanForm = () => {
   const [form, dispatchForm] = useReducer(formReducer, initialState);
+  const [showTimePicker, setShowTimePicker] = useState(false);
+
+  const validateForm = () => {
+    let isValid = true;
+    Object.keys(form).forEach(key => {
+      if (!form[key as keyof formState]) {
+        isValid = false;
+      }
+    });
+    return isValid;
+  };
+
+  const setNotificationTimeHandler = ({ nativeEvent, type }: any) => {
+    setShowTimePicker(false);
+
+    if (type !== 'set') {
+      return;
+    }
+
+    dispatchForm({
+      type: 'SET_PILLS_NOTIFICATION_TIME',
+      payload: nativeEvent.timestamp,
+    });
+  };
 
   const submitHandler = () => {
+    if (!validateForm()) {
+      Alert.alert('Error', 'Complete all required fields.', [{ text: 'OK' }]);
+      return;
+    }
     console.log(form);
   };
 
@@ -100,6 +145,7 @@ const PlanForm = () => {
             type="secondary"
             icon="beforeEating"
             fit
+            focused={form.when === 'Before Eating'}
             onPress={() =>
               dispatchForm({
                 type: 'SET_PILLS_TIME',
@@ -112,6 +158,7 @@ const PlanForm = () => {
             type="secondary"
             icon="duringEating"
             fit
+            focused={form.when === 'During Eating'}
             onPress={() =>
               dispatchForm({
                 type: 'SET_PILLS_TIME',
@@ -124,6 +171,7 @@ const PlanForm = () => {
             type="secondary"
             icon="afterEating"
             fit
+            focused={form.when === 'After Eating'}
             onPress={() =>
               dispatchForm({
                 type: 'SET_PILLS_TIME',
@@ -134,7 +182,14 @@ const PlanForm = () => {
         </View>
       </View>
       <View style={styles.field}>
-        <AppText style={styles.fieldTitle}>Notifications</AppText>
+        <AppText style={styles.fieldTitle}>Notification</AppText>
+        <TimePicker
+          show={showTimePicker}
+          value={form.notificationTime}
+          onChange={event => setNotificationTimeHandler(event)}
+          onFocus={() => setShowTimePicker(true)}
+          onTouchCancel={() => setShowTimePicker(false)}
+        />
       </View>
       <AppButton type="primary" title="Done" onPress={submitHandler} />
     </View>

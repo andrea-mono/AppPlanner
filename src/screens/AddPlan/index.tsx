@@ -4,7 +4,7 @@ import { ScrollView, View } from 'react-native';
 import IconButton from '@components/IconButton';
 import { styles } from './style';
 import { fonts } from '@theme/fonts';
-import PlanForm from '@components/PlanForm/PlanForm';
+import PlanForm from '@components/PlanForm';
 
 const AddPlan = ({ navigation }: any) => {
   return (
